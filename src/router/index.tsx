@@ -8,6 +8,7 @@ export const RouterPath = {
 
 export const router = createBrowserRouter([
   {
+    path: RouterPath.Index,
     element: <DefaultLayout />,
     children: [
       {
