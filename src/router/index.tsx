@@ -3,7 +3,7 @@ import { IndexPage } from '../pages';
 import { DefaultLayout } from '../components/default-layout';
 
 export const RouterPath = {
-  Index: '/'
+  Index: '/togather/'
 }
 
 export const router = createBrowserRouter([
