@@ -1,6 +1,6 @@
 {
   "name": "togather",
-  "private": true,
+  "private": false,
   "homepage": "https://yakovm1ke.github.io/togather/",
   "version": "0.0.1",
   "type": "module",
