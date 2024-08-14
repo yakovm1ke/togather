@@ -1,0 +1,6 @@
+.footer {
+  padding: 16px var(--page-side-padding);
+  box-sizing: border-box;
+  font-size: 40px;
+  font-size: var(--layout-text-size);
+}

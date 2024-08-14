@@ -1,0 +1,35 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  max-width: var(--page-max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px var(--page-side-padding) 80px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+.header {
+  position: sticky;
+  top: 0px;
+  background: var(--background);
+  border-bottom: 1px solid var(--text-color);
+}
+
+.footer {
+  background: var(--background);
+  border-top: 1px solid var(--text-color);
+  box-sizing: border-box;
+}
+
+.footerContent,
+.headerContent {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+

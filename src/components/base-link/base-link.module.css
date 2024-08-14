@@ -1,0 +1,14 @@
+.baseLink {
+  text-decoration: underline;
+  transition: all 0.1s;
+}
+
+.baseLink:hover {
+  cursor: pointer;
+  background-color: var(--text-color);
+  color: var(--background);
+}
+
+.baseLink a {
+  all: unset;
+}

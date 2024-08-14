@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  --page-side-padding: 32px;
+  --page-max-width: 1280px;
+  --background: #FFFFFF;
+  --text-color: #000000;
+  --font-primary: "IBM Plex Sans", monospace;
+  --font-secondary: "IBM Plex Mono", monospace;
+
+  --title-text-size: 72px;
+  --body-text-size: 20px;
+  --heading-text-size: 36px;
+  --layout-text-size: 40px;
+
+  font-family: var(--font-primary);
+  font-size: var(--body-text-size);
+}
+
+body {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --page-side-padding: 16px;
+    --title-text-size: 56px;
+    --body-text-size: 16px;
+    --heading-text-size: 24px;
+    --layout-text-size: 24px;
+  }
+}

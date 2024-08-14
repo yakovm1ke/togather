@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: var(--title-text-size);
+}
+
+.description {
+  margin-top: 8px;
+}
+
+.content {
+  margin-top: 60px;
+}
+
