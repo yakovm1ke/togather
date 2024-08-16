@@ -6,8 +6,6 @@ export const RouterPath = {
   Index: '/'
 }
 
-
-
 export const router = createBrowserRouter([
   {
     path: RouterPath.Index,
