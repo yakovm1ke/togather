@@ -28,7 +28,7 @@ export const BooksClub = (props: BooksClubProps) => {
       >
         <div className={styles.container}>
           <div className={styles.section}>
-            <div>сейчас читаем</div>
+            <div>{isBeforeMeeting ? 'сейчас читаем' : 'читали'}</div>
             <div className={styles.sectionBody}>
               <div className={styles.download}>
                 {props.book.name}
@@ -45,7 +45,7 @@ export const BooksClub = (props: BooksClubProps) => {
           </div>
 
           <div className={styles.section}>
-            <div>ближайшая встреча</div>
+            <div>{isBeforeMeeting ? 'ближайшая встреча' : 'встреча была'}</div>
             <div className={styles.sectionBody}>
               {meetingAt}
             </div>
