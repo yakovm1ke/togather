@@ -9,6 +9,7 @@ export const Footer = () => {
         с вопросами{' '}
         <BaseLink>
           <a
+            rel="noopener noreferrer"
             href="https://t.me/yakovmike"
             target='_blank'
           >

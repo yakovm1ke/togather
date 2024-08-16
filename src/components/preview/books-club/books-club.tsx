@@ -34,9 +34,9 @@ export const BooksClub = (props: BooksClubProps) => {
                 {props.book.name}
 
                 <a
+                  rel="noopener noreferrer"
                   target='_blank'
                   href={props.book.url}
-                  rel={'noreferrer noopener'}
                 >
                   <img src={downloadIcon} />
                 </a>
@@ -65,6 +65,7 @@ export const BooksClub = (props: BooksClubProps) => {
                 <a
                   href='https://meet.google.com/aon-hnmr-dru'
                   target='_blank'
+                  rel="noopener noreferrer"
                 >
                   по ссылке
                 </a>

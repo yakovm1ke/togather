@@ -14,12 +14,6 @@ export const ClubWrapper = (props: ClubWrapperProps) => {
         <div className={styles.title}>
           {props.title}
         </div>
-
-        {false && (
-          <a>
-            подробнее →
-          </a>
-        )}
       </div>
 
       {props.description && (
