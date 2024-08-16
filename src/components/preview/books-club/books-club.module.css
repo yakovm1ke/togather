@@ -1,23 +1,18 @@
-.container {
+.section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
   justify-content: center;
 }
 
-.section {
+.sectionItem {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.sectionBody {
+.sectionItemBody {
   font-size: var(--heading-text-size);
-}
-
-.download {
-  display: flex;
-  gap: 16px;
 }
 
 .download img {
@@ -25,7 +20,7 @@
 }
 
 @media (max-width: 600px) {
-  .container {
+  .section {
     display: flex;
     flex-direction: column;
     gap: 24px;

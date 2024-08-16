@@ -26,41 +26,44 @@ export const BooksClub = (props: BooksClubProps) => {
           </>
         )}
       >
-        <div className={styles.container}>
-          <div className={styles.section}>
+        <div className={styles.section}>
+          <div className={styles.sectionItem}>
             <div>{isBeforeMeeting ? 'сейчас читаем' : 'читали'}</div>
-            <div className={styles.sectionBody}>
+            <div className={styles.sectionItemBody}>
               <div className={styles.download}>
                 {props.book.name}
+                &nbsp;&nbsp;
 
-                <a
-                  rel="noopener noreferrer"
-                  target='_blank'
-                  href={props.book.url}
-                >
-                  <img src={downloadIcon} />
-                </a>
+                {props.book.url && (
+                  <a
+                    rel="noopener noreferrer"
+                    target='_blank'
+                    href={props.book.url}
+                  >
+                    <img src={downloadIcon} />
+                  </a>
+                )}
               </div>
             </div>
           </div>
 
-          <div className={styles.section}>
+          <div className={styles.sectionItem}>
             <div>{isBeforeMeeting ? 'ближайшая встреча' : 'встреча была'}</div>
-            <div className={styles.sectionBody}>
+            <div className={styles.sectionItemBody}>
               {meetingAt}
             </div>
           </div>
 
-          <div className={styles.section}>
+          <div className={styles.sectionItem}>
             <div>{isBeforeMeeting ? 'осталось времени' : 'с начала встречи'}</div>
-            <div className={styles.sectionBody}>
+            <div className={styles.sectionItemBody}>
               {distance}
             </div>
           </div>
 
-          <div className={styles.section}>
+          <div className={styles.sectionItem}>
             <div>где встречаемся</div>
-            <div className={styles.sectionBody}>
+            <div className={styles.sectionItemBody}>
               <BaseLink>
                 <a
                   href='https://meet.google.com/aon-hnmr-dru'
