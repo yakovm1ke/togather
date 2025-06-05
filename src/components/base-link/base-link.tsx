@@ -7,9 +7,9 @@ export type BaseLinkProps = {
 }
 
 export const BaseLink = (props: BaseLinkProps) => {
-  return (
-    <span className={styles.baseLink}>
-      {props.children}
-    </span>
-  )
+	return (
+		<span className={styles.baseLink}>
+			{props.children}
+		</span>
+	)
 }

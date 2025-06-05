@@ -1,34 +1,33 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { bookSchema } from './schemas';
+import { initializeApp } from 'firebase/app'
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite'
+import { bookSchema } from './schemas'
+import { ZodSchema } from 'zod'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAvKFgi0AuhV4_DgCuZhzS69LivwNIHsUw',
-  authDomain: 'clubb00k.firebaseapp.com',
-  projectId: 'clubb00k',
-  storageBucket: 'clubb00k.appspot.com',
-  messagingSenderId: '954921234381',
-  appId: '1:954921234381:web:7a81ee23ff663a637f9e84',
-};
+	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+	projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+	appId: import.meta.env.VITE_FIREBASE_APP_ID,
+}
 
 const collections = ['books'] as const
 
 type Collection = typeof collections[number]
 
 export const createApi = () => {
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+	const app = initializeApp(firebaseConfig)
+	const db = getFirestore(app)
 
-  const getCollection = async(collectionName: Collection) => {
-    const col = collection(db, collectionName);
-    const {docs} = await getDocs(col)
-    return docs.map(it => it.data())
-  }
+	const getCollection = async <T>(collectionName: Collection, schema: ZodSchema<T[]>) => {
+		const col = collection(db, collectionName)
+		const { docs } = await getDocs(col)
+		const data = docs.map(doc => doc.data())
+		return schema.parse(data)
+	}
 
-  return {
-    getBooks: async() => {
-      const response = await getCollection('books')
-      return bookSchema.array().parse(response)
-    }
-  }
+	return {
+		getBooks: () => getCollection('books', bookSchema.array()),
+	}
 }

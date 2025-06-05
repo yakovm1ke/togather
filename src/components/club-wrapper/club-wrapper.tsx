@@ -8,25 +8,25 @@ export type ClubWrapperProps = {
 }
 
 export const ClubWrapper = (props: ClubWrapperProps) => {
-  return (
-    <div>
-      <div className={styles.header}>
-        <div className={styles.title}>
-          {props.title}
-        </div>
-      </div>
+	return (
+		<div>
+			<div className={styles.header}>
+				<div className={styles.title}>
+					{props.title}
+				</div>
+			</div>
 
-      {props.description && (
-        <div className={styles.description}>
-          {props.description}
-        </div>
-      )}
+			{props.description && (
+				<div className={styles.description}>
+					{props.description}
+				</div>
+			)}
 
-      {props.children && (
-        <div className={styles.content}>
-          {props.children}
-        </div>
-      )}
-    </div>
-  )
+			{props.children && (
+				<div className={styles.content}>
+					{props.children}
+				</div>
+			)}
+		</div>
+	)
 }

@@ -4,23 +4,23 @@ import { Header } from '../header'
 import { Footer } from '../footer'
 
 export const DefaultLayout = () => {
-  return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <Header />
-        </div>
-      </header>
+	return (
+		<div className={styles.page}>
+			<header className={styles.header}>
+				<div className={styles.headerContent}>
+					<Header />
+				</div>
+			</header>
 
-      <div className={styles.content}>
-        <Outlet />
-      </div>
+			<div className={styles.content}>
+				<Outlet />
+			</div>
 
-      <footer className={styles.footer}>
-        <div className={styles.footerContent}>
-          <Footer />
-        </div>
-      </footer>
-    </div>
-  )
+			<footer className={styles.footer}>
+				<div className={styles.footerContent}>
+					<Footer />
+				</div>
+			</footer>
+		</div>
+	)
 }
