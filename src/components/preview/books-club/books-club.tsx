@@ -19,28 +19,32 @@ export const BooksClub = (props: BooksClubProps) => {
 
 	async function handleDownload() {
 		const filename = `Обсуждение книги «${props.book.name}» — ${props.book.author}`
+		const date = new Date(props.book.meetingAt)
+
+		const event: Parameters<typeof createEvent>[0] = {
+			start: [
+				date.getUTCFullYear(),
+				date.getUTCMonth() + 1,
+				date.getUTCDate(),
+				date.getHours(),
+				date.getUTCMinutes(),
+			],
+			duration: { hours: 2 },
+			title: filename,
+			url: 'https://meet.google.com/aon-hnmr-dru',
+		}
+
 		const file = await new Promise<File>((resolve, reject) => {
-			const date = new Date(props.book.meetingAt)
-
-			createEvent(
-				{
-					start: [date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(), date.getHours(), date.getUTCMinutes()],
-					duration: { hours: 2 },
-					title: filename,
-					url: 'https://meet.google.com/aon-hnmr-dru',
-				},
-				(error, value) => {
-					if (error) {
-						reject(error)
-					}
-
-					resolve(new File([value], filename, { type: 'text/calendar' }))
-				})
+			createEvent(event, (error, value) => {
+				if (error) {
+					reject(error)
+					return
+				}
+				resolve(new File([value], filename, { type: 'text/calendar' }))
+			})
 		})
-		const url = URL.createObjectURL(file)
 
-		// trying to assign the file URL to a window could cause cross-site
-		// issues so this is a workaround using HTML5
+		const url = URL.createObjectURL(file)
 		const anchor = document.createElement('a')
 		anchor.href = url
 		anchor.download = filename
@@ -48,7 +52,6 @@ export const BooksClub = (props: BooksClubProps) => {
 		document.body.appendChild(anchor)
 		anchor.click()
 		document.body.removeChild(anchor)
-
 		URL.revokeObjectURL(url)
 	}
 
@@ -62,7 +65,7 @@ export const BooksClub = (props: BooksClubProps) => {
             Однако если вы&nbsp;верите, что&nbsp;литература лучше компьютерных игр, наркотиков, алкоголя и&nbsp;быстрых
             утех — нам с&nbsp;вами по&nbsp;пути и&nbsp;мы&nbsp;будем рады видеть вас на&nbsp;регулярных встречах &laquo;Книг клуба&raquo;.
             Чтобы&nbsp;точнее передать нашу философию, позволим себе перефразировать Рене Декарта (мы&nbsp;его пока
-            не&nbsp;читали): &laquo;Я&nbsp;читаю,следовательно, я&nbsp;существую&raquo;.
+            не&nbsp;читали): &laquo;Я&nbsp;читаю, следовательно, я&nbsp;существую&raquo;.
 					</>
 				)}
 			>
