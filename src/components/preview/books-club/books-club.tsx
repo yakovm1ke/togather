@@ -3,9 +3,9 @@ import { format, formatDistance } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { ClubWrapper } from '../../club-wrapper'
 import styles from './books-club.module.css'
-import downloadIcon from '../../../assets/icons/download.svg'
 import { Book } from '../../../api/schemas'
 import { createEvent } from 'ics'
+import { Button } from '../../button'
 
 export type BooksClubProps = {
   book: Book
@@ -17,7 +17,7 @@ export const BooksClub = (props: BooksClubProps) => {
 	const isBeforeMeeting = new Date().getTime() < new Date(props.book.meetingAt).getTime()
 	const distance = formatDistance(new Date(props.book.meetingAt), new Date(), { locale: ru })
 
-	async function handleDownload() {
+	async function downloadMeeting() {
 		const filename = `Обсуждение книги «${props.book.name}» — ${props.book.author}`
 		const date = new Date(props.book.meetingAt)
 
@@ -73,22 +73,27 @@ export const BooksClub = (props: BooksClubProps) => {
 					<div className={styles.sectionItem}>
 						<div>{isBeforeMeeting ? 'сейчас читаем' : 'читали'}</div>
 						<div className={styles.sectionItemBody}>
-							<div className={styles.download}>
+							<span className={styles.bookName}>
 								{props.book.name}
-                &nbsp;&nbsp;
-								{props.book.url && (
+							</span>
+						</div>
+
+						<div>
+							{props.book.author}
+						</div>
+
+						<div>
+							{props.book.url && (
+								<BaseLink>
 									<a
-										rel="noopener noreferrer"
+										rel='noopener noreferrer'
 										target='_blank'
 										href={props.book.url}
 									>
-										<img src={downloadIcon} />
+											скачать
 									</a>
-								)}
-							</div>
-						</div>
-						<div>
-							{props.book.author}
+								</BaseLink>
+							)}
 						</div>
 					</div>
 
@@ -98,12 +103,11 @@ export const BooksClub = (props: BooksClubProps) => {
 							{meetingAt}
 						</div>
 						{isBeforeMeeting && (
-							<button
-								onClick={handleDownload}
-								className={styles.button}
+							<Button
+								onClick={downloadMeeting}
 							>
-                Добавить в календарь
-							</button>
+								Добавить в календарь
+							</Button>
 						)}
 					</div>
 
@@ -121,7 +125,7 @@ export const BooksClub = (props: BooksClubProps) => {
 								<a
 									href='https://meet.google.com/aon-hnmr-dru'
 									target='_blank'
-									rel="noopener noreferrer"
+									rel='noopener noreferrer'
 								>
                   по ссылке
 								</a>

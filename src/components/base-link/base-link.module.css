@@ -1,11 +1,11 @@
 .baseLink {
   text-decoration: underline;
-  transition: all 0.1s;
+  transition: all 0.05s;
 }
 
 .baseLink:hover {
   cursor: pointer;
-  background-color: var(--text-color);
+  background-color: var(--accent-color);
   color: var(--background);
 }
 
