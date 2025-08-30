@@ -5,8 +5,7 @@
 
 .baseLink:hover {
   cursor: pointer;
-  background-color: var(--accent-color);
-  color: var(--background);
+  color: var(--accent-color);
 }
 
 .baseLink a {

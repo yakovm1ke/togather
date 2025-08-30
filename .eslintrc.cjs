@@ -4,11 +4,12 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
     'plugin:react-hooks/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'react'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -36,5 +37,7 @@ module.exports = {
     'space-infix-ops': 'error',
     'space-unary-ops': ['error', { words: true, nonwords: false }],
     'jsx-quotes': ['error', 'prefer-single'],
+    'react/jsx-indent': ['error', 'tab'],
+    'react/react-in-jsx-scope': 'off',
   },
 }

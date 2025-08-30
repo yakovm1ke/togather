@@ -10,8 +10,7 @@
   /* Colors */
   --background: #FFFFFF;
   --text-color: #000000;
-  /* --accent-color: #023ae1; */
-  --accent-color: #e102ce;
+  --accent-color: #023ae1;
 
   /* Typography */
   --font-primary: "IBM Plex Sans", monospace;
@@ -40,4 +39,9 @@ body {
     --heading-text-size: 24px;
     --layout-text-size: 24px;
   }
+}
+
+::selection {
+  background: var(--accent-color);
+  color: var(--background);
 }

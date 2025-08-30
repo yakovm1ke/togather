@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { BooksClub } from '../components/preview/books-club'
 import { createApi } from '../api'
 import { Book } from '../api/schemas'
+import { DotsLoader } from '../components/dots-loader'
 
 export const IndexPage = () => {
 	const [books, setBooks] = useState<Book[]>([])
@@ -27,16 +28,14 @@ export const IndexPage = () => {
 
 	if (loading) {
 		return (
-			<div>
-        Загрузка...
-			</div>
+			<DotsLoader />
 		)
 	}
 
 	if (!latestBook) {
 		return (
 			<div>
-        Ошибка. Не удалось получить данные
+				Ошибка. Не удалось получить данные
 			</div>
 		)
 	}

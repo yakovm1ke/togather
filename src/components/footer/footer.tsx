@@ -6,14 +6,14 @@ export const Footer = () => {
 	return (
 		<div className={styles.footer}>
 			<div>
-        с вопросами{' '}
+				с вопросами{' '}
 				<BaseLink>
 					<a
 						rel='noopener noreferrer'
 						href='https://t.me/yakovmike'
 						target='_blank'
 					>
-            сюда
+						сюда
 					</a>
 				</BaseLink>
 			</div>

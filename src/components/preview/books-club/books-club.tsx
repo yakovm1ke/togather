@@ -9,6 +9,7 @@ import { Button } from '../../button'
 
 export type BooksClubProps = {
   book: Book
+	loading?: boolean
 }
 
 export const BooksClub = (props: BooksClubProps) => {
@@ -61,11 +62,11 @@ export const BooksClub = (props: BooksClubProps) => {
 				title='«книг клуб»'
 				description={(
 					<>
-            Обозначим сразу: если вы&nbsp;считаете, что читать книги это outdated, мы&nbsp;не&nbsp;будем вас переубеждать.
-            Однако если вы&nbsp;верите, что&nbsp;литература лучше компьютерных игр, наркотиков, алкоголя и&nbsp;быстрых
-            утех — нам с&nbsp;вами по&nbsp;пути и&nbsp;мы&nbsp;будем рады видеть вас на&nbsp;регулярных встречах &laquo;Книг клуба&raquo;.
-            Чтобы&nbsp;точнее передать нашу философию, позволим себе перефразировать Рене Декарта (мы&nbsp;его пока
-            не&nbsp;читали): &laquo;Я&nbsp;читаю, следовательно, я&nbsp;существую&raquo;.
+						Обозначим сразу: если вы&nbsp;считаете, что читать книги это outdated, мы&nbsp;не&nbsp;будем вас переубеждать.
+						Однако если вы&nbsp;верите, что&nbsp;литература лучше компьютерных игр, наркотиков, алкоголя и&nbsp;быстрых
+						утех — нам с&nbsp;вами по&nbsp;пути и&nbsp;мы&nbsp;будем рады видеть вас на&nbsp;регулярных встречах &laquo;Книг клуба&raquo;.
+						Чтобы&nbsp;точнее передать нашу философию, позволим себе перефразировать Рене Декарта (мы&nbsp;его пока
+						не&nbsp;читали): &laquo;Я&nbsp;читаю, следовательно, я&nbsp;существую&raquo;.
 					</>
 				)}
 			>
@@ -90,7 +91,7 @@ export const BooksClub = (props: BooksClubProps) => {
 										target='_blank'
 										href={props.book.url}
 									>
-											скачать
+										скачать
 									</a>
 								</BaseLink>
 							)}
@@ -106,7 +107,7 @@ export const BooksClub = (props: BooksClubProps) => {
 							<Button
 								onClick={downloadMeeting}
 							>
-								Добавить в календарь
+								добавить в календарь
 							</Button>
 						)}
 					</div>
@@ -127,7 +128,7 @@ export const BooksClub = (props: BooksClubProps) => {
 									target='_blank'
 									rel='noopener noreferrer'
 								>
-                  по ссылке
+									по ссылке
 								</a>
 							</BaseLink>
 						</div>

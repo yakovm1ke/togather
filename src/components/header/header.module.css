@@ -1,6 +1,11 @@
 .header {
   padding: 16px var(--page-side-padding);
   box-sizing: border-box;
-  font-size: var(--layout-text-size);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.headerLogo {
+  font-size: var(--layout-text-size);
+}
