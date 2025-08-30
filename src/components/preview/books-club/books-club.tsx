@@ -6,6 +6,7 @@ import styles from './books-club.module.css'
 import { Book } from '../../../api/schemas'
 import { createEvent } from 'ics'
 import { Button } from '../../button'
+import { ArrowDownToLine, CalendarPlus } from 'lucide-react'
 
 export type BooksClubProps = {
   book: Book
@@ -85,15 +86,15 @@ export const BooksClub = (props: BooksClubProps) => {
 
 						<div>
 							{props.book.url && (
-								<BaseLink>
-									<a
-										rel='noopener noreferrer'
-										target='_blank'
-										href={props.book.url}
-									>
-										скачать
-									</a>
-								</BaseLink>
+								<Button
+									icon={<ArrowDownToLine />}
+									onClick={() => {
+										window.open(props.book.url, '_blank')
+									}}
+								>
+
+									скачать
+								</Button>
 							)}
 						</div>
 					</div>
@@ -106,6 +107,7 @@ export const BooksClub = (props: BooksClubProps) => {
 						{isBeforeMeeting && (
 							<Button
 								onClick={downloadMeeting}
+								icon={<CalendarPlus />}
 							>
 								добавить в календарь
 							</Button>

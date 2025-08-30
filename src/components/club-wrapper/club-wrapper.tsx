@@ -1,6 +1,6 @@
-import { ReactNode, useState } from 'react'
 import styles from './club-wrapper.module.css'
 import { Button } from '../button'
+import { ReactNode, useState } from 'react'
 
 export type ClubWrapperProps = {
   title: string
