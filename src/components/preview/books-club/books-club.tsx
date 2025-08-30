@@ -77,25 +77,23 @@ export const BooksClub = (props: BooksClubProps) => {
 						<div className={styles.sectionItemBody}>
 							<span className={styles.bookName}>
 								{props.book.name}
+
+								{props.book.url && (
+									<>
+									&nbsp;
+										<Button
+											icon={<ArrowDownToLine />}
+											onClick={() => {
+												window.open(props.book.url, '_blank')
+											}}
+										/>
+									</>
+								)}
 							</span>
 						</div>
 
 						<div>
 							{props.book.author}
-						</div>
-
-						<div>
-							{props.book.url && (
-								<Button
-									icon={<ArrowDownToLine />}
-									onClick={() => {
-										window.open(props.book.url, '_blank')
-									}}
-								>
-
-									скачать
-								</Button>
-							)}
 						</div>
 					</div>
 
@@ -103,15 +101,17 @@ export const BooksClub = (props: BooksClubProps) => {
 						<div>{isBeforeMeeting ? 'ближайшая встреча' : 'встреча была'}</div>
 						<div className={styles.sectionItemBody}>
 							{meetingAt}
+
+							{isBeforeMeeting && (
+								<>&nbsp;
+									<Button
+										onClick={downloadMeeting}
+										icon={<CalendarPlus />}
+									/>
+								</>
+							)}
+
 						</div>
-						{isBeforeMeeting && (
-							<Button
-								onClick={downloadMeeting}
-								icon={<CalendarPlus />}
-							>
-								добавить в календарь
-							</Button>
-						)}
 					</div>
 
 					<div className={styles.sectionItem}>
