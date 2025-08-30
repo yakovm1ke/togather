@@ -1,6 +1,5 @@
 import styles from './club-wrapper.module.css'
-import { Button } from '../button'
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
 export type ClubWrapperProps = {
   title: string
@@ -9,7 +8,6 @@ export type ClubWrapperProps = {
 }
 
 export const ClubWrapper = (props: ClubWrapperProps) => {
-	const [isDescriptionShown, setIsDescriptionShown] = useState(false)
 
 	return (
 		<div>
@@ -19,28 +17,18 @@ export const ClubWrapper = (props: ClubWrapperProps) => {
 				</div>
 			</div>
 
-			{props.description && (
-				<>
-					<div className={styles.descriptionButton}>
-						<Button
-							onClick={() => setIsDescriptionShown(!isDescriptionShown)}
-						>
-							{isDescriptionShown ? 'скрыть описание клуба' : 'показать описание клуба'}
-						</Button>
-					</div>
-
-					{isDescriptionShown && (
-						<div className={styles.description}>
-							{props.description}
-						</div>
-					)}
-				</>
-			)}
-
 			{props.children && (
 				<div className={styles.content}>
 					{props.children}
 				</div>
+			)}
+
+			{props.description && (
+				<>
+					<div className={styles.description}>
+						{props.description}
+					</div>
+				</>
 			)}
 		</div>
 	)
