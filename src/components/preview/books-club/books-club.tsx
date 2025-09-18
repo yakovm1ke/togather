@@ -7,6 +7,7 @@ import { Book } from '../../../api/schemas'
 import { createEvent } from 'ics'
 import { Button } from '../../button'
 import { ArrowDownToLine, CalendarPlus } from 'lucide-react'
+import { BOOKS_CLUB_MEETING_URL } from '../../../constants/books-club'
 
 export type BooksClubProps = {
   book: Book
@@ -15,7 +16,7 @@ export type BooksClubProps = {
 
 export const BooksClub = (props: BooksClubProps) => {
 
-	const meetingAt = format(new Date(props.book.meetingAt), 'dd MMMM, HH:mm (EEEE)', { locale: ru })
+	const meetingAt = format(new Date(props.book.meetingAt), 'dd MMMM, HH:mm (EEE)', { locale: ru })
 	const isBeforeMeeting = new Date().getTime() < new Date(props.book.meetingAt).getTime()
 	const distance = formatDistance(new Date(props.book.meetingAt), new Date(), { locale: ru })
 
@@ -126,7 +127,7 @@ export const BooksClub = (props: BooksClubProps) => {
 						<div className={styles.sectionItemBody}>
 							<BaseLink>
 								<a
-									href='https://meet.google.com/aon-hnmr-dru'
+									href={BOOKS_CLUB_MEETING_URL.YANDEX_TELEMOST}
 									target='_blank'
 									rel='noopener noreferrer'
 								>
