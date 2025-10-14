@@ -1,5 +1,5 @@
 import { createEvent } from 'ics'
-import { Book } from '~/shared/api/schemas'
+import { Book } from '~/entities/books'
 
 export const downloadCalendarEvent = async(book: Book, meetingUrl: string) => {
 	const filename = `Обсуждение книги «${book.name}» — ${book.author}`
