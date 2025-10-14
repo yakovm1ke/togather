@@ -9,22 +9,37 @@ import { ArrowDownToLine, CalendarPlus } from 'lucide-react'
 import { BOOKS_CLUB_MEETING_URL } from '~/widgets/books-club/config/constants'
 import { useCallback } from 'react'
 import { downloadCalendarEvent } from '../lib/download-calendar-event'
+import { Skeleton } from '~/shared/ui/skeleton'
 
 export type BooksClubProps = {
-  book: Book
-	loading?: boolean
+  book: Book | null
+	loading: boolean
 }
 
 const ACTIVE_MEETING_URL = BOOKS_CLUB_MEETING_URL.JITSI
 
-export const BooksClub = (props: BooksClubProps) => {
-	const meetingAt = format(new Date(props.book.meetingAt), 'dd MMMM, HH:mm (EEE)', { locale: ru })
-	const isBeforeMeeting = new Date().getTime() < new Date(props.book.meetingAt).getTime()
-	const distance = formatDistance(new Date(props.book.meetingAt), new Date(), { locale: ru })
+const SKELETON_SIZES = Array.from({ length: 4 }, () => {
+	return [
+		{
+			width: Math.random() * 100 + 100,
+			height: 26,
+		},
+		{
+			width: Math.random() * 200 + 300,
+			height: 46,
+		},
+	]
+})
+
+export const BooksClub = ({ book, loading }: BooksClubProps) => {
+	const meetingAt = book?.meetingAt ? format(new Date(book?.meetingAt), 'dd MMMM, HH:mm (EEE)', { locale: ru }) : ''
+	const isBeforeMeeting = book?.meetingAt ? new Date().getTime() < new Date(book.meetingAt).getTime() : false
+	const distance = book?.meetingAt ? formatDistance(new Date(book.meetingAt), new Date(), { locale: ru }) : ''
 
 	const onDownload = useCallback(() => {
-		downloadCalendarEvent(props.book, ACTIVE_MEETING_URL)
-	}, [props.book])
+		if (!book) return
+		downloadCalendarEvent(book, ACTIVE_MEETING_URL)
+	}, [book])
 
 	return (
 		<div>
@@ -40,71 +55,89 @@ export const BooksClub = (props: BooksClubProps) => {
 					</>
 				)}
 			>
-				<div className={styles.section}>
-					<div className={styles.sectionItem}>
-						<div>{isBeforeMeeting ? 'сейчас читаем' : 'читали'}</div>
-						<div className={styles.sectionItemBody}>
-							<span className={styles.bookName}>
-								{props.book.name}
+				{loading && (
+					<div className={styles.section}>
+						{SKELETON_SIZES.map((sizes, index) => (
+							<div className={styles.sectionItem} key={index}>
+								{sizes.map((size, index) => (
+									<Skeleton variant='text' width={size.width} height={size.height} key={index} />
+								))}
+							</div>
+						))}
+					</div>
+				)}
 
-								{props.book.url && (
-									<>
-									&nbsp;
+				{!book && !loading && (
+					<div>
+						Книга не найдена
+					</div>
+				)}
+
+				{!loading && book && (
+					<div className={styles.section}>
+						<div className={styles.sectionItem}>
+							<div>{isBeforeMeeting ? 'сейчас читаем' : 'читали'}</div>
+							<div className={styles.sectionItemBody}>
+								<span>
+									{book.name}
+									{book.url && (
+										<>
+											&nbsp;
+											<Button
+												icon={<ArrowDownToLine />}
+												onClick={() => {
+													window.open(book.url, '_blank')
+												}}
+											/>
+										</>
+									)}
+								</span>
+							</div>
+
+							<div>
+								{book.author}
+							</div>
+						</div>
+
+						<div className={styles.sectionItem}>
+							<div>{isBeforeMeeting ? 'ближайшая встреча' : 'встреча была'}</div>
+							<div className={styles.sectionItemBody}>
+								{meetingAt}
+								{isBeforeMeeting && (
+									<>&nbsp;
 										<Button
-											icon={<ArrowDownToLine />}
-											onClick={() => {
-												window.open(props.book.url, '_blank')
-											}}
+											onClick={onDownload}
+											icon={<CalendarPlus />}
 										/>
 									</>
 								)}
-							</span>
+
+							</div>
 						</div>
 
-						<div>
-							{props.book.author}
+						<div className={styles.sectionItem}>
+							<div>{isBeforeMeeting ? 'осталось времени' : 'с начала встречи'}</div>
+							<div className={styles.sectionItemBody}>
+								{distance}
+							</div>
 						</div>
-					</div>
 
-					<div className={styles.sectionItem}>
-						<div>{isBeforeMeeting ? 'ближайшая встреча' : 'встреча была'}</div>
-						<div className={styles.sectionItemBody}>
-							{meetingAt}
-
-							{isBeforeMeeting && (
-								<>&nbsp;
-									<Button
-										onClick={onDownload}
-										icon={<CalendarPlus />}
-									/>
-								</>
-							)}
-
-						</div>
-					</div>
-
-					<div className={styles.sectionItem}>
-						<div>{isBeforeMeeting ? 'осталось времени' : 'с начала встречи'}</div>
-						<div className={styles.sectionItemBody}>
-							{distance}
+						<div className={styles.sectionItem}>
+							<div>где встречаемся</div>
+							<div className={styles.sectionItemBody}>
+								<BaseLink>
+									<a
+										href={ACTIVE_MEETING_URL}
+										target='_blank'
+										rel='noopener noreferrer'
+									>
+										по ссылке
+									</a>
+								</BaseLink>
+							</div>
 						</div>
 					</div>
-
-					<div className={styles.sectionItem}>
-						<div>где встречаемся</div>
-						<div className={styles.sectionItemBody}>
-							<BaseLink>
-								<a
-									href={ACTIVE_MEETING_URL}
-									target='_blank'
-									rel='noopener noreferrer'
-								>
-									по ссылке
-								</a>
-							</BaseLink>
-						</div>
-					</div>
-				</div>
+				)}
 			</ClubWrapper>
 		</div>
 	)

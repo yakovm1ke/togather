@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BooksClub } from '~/widgets/books-club'
 import { Book, getBooks } from '~/entities/books'
-import { DotsLoader } from '~/shared/ui/dots-loader'
 
 export const IndexPage = () => {
 	const [books, setBooks] = useState<Book[]>([])
@@ -25,24 +24,11 @@ export const IndexPage = () => {
 		fetchClubs().finally(() => setLoading(false))
 	}, [])
 
-	if (loading) {
-		return (
-			<DotsLoader />
-		)
-	}
-
-	if (!latestBook) {
-		return (
-			<div>
-				Ошибка. Не удалось получить данные
-			</div>
-		)
-	}
-
 	return (
 		<div>
 			<BooksClub
 				book={latestBook}
+				loading={loading}
 			/>
 		</div>
 	)
