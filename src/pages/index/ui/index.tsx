@@ -40,7 +40,7 @@
 
 export const IndexPage = () => {
 	return (
-		<div style={{width}}>
+		<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
 			<h1>Сервис недоступен 🚫</h1>
 		</div>
 	)
